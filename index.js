@@ -1,6 +1,6 @@
 const express = require('express')
 const crypto = require('crypto')
-const data = require('./data.js')
+const data = require('./public/data.js')
 
 const app = express()
 const port = 3000
@@ -9,26 +9,38 @@ const port = 3000
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-// STEP 2 --------------------------------//
+app.use(express.static('public'))
 
+// pug template engine
+app.set('views', './views')
+app.set('view engine', 'pug')
+
+// ROUTES
 app.get('/', (req, res) => {
-  res.send('Welcome to our schedule website')
+  res.render('index', {
+    description: 'Welcome to our schedule website'
+  })
 })
 
 app.get('/users', (req, res) => {
-  res.send(data.users)
+  res.render('users', {
+    users: data.users
+  })
 })
 
 app.get('/schedules', (req, res) => {
-  res.send(data.schedules)
+  res.render('schedules', {
+    schedules: data.schedules
+  })
 })
-
-// STEP 3 --------------------------------//
 
 app.get('/users/:id', (req, res) => {
-  res.send(data.users[req.params.id])
+  res.render('user', {
+    users: data.users[req.params.id]
+  })
 })
 
+//this one doesn't work
 let personalSchedule = []
 app.get('/users/:id/schedules', (req, res) => {
   for (i = 0; i < data.schedules.length; i++) {
@@ -36,8 +48,11 @@ app.get('/users/:id/schedules', (req, res) => {
       personalSchedule.push(data.schedules[i])
     }
   }
-  res.send(personalSchedule)
-  personalSchedule = []
+  res.render('schedule', {
+    schedules: personalSchedule
+  })
+
+  // personalSchedule = []
 })
 
 // STEP 4 --------------------------------//

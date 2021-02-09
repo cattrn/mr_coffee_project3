@@ -1,0 +1,16 @@
+extends layout 
+
+block content
+  h2 All Users 
+  table
+    tr
+      td First Name 
+      td Last Name
+      td Email 
+      td Password
+    each user, i in users
+      tr
+        td= user.firstname
+        td= user.lastname
+        td= user.email 
+        td= user.password

@@ -1,0 +1,93 @@
+/* SELF-HOSTED FONTS */
+
+@font-face {
+  font-family: "Avenir Next";
+  src: url("/fonts/AvenirNext-Medium.woff") format("woff"),
+    url("/fonts/AvenirNext-Medium.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir Next";
+  src: url("/fonts/AvenirNext-Bold.woff") format("woff"),
+    url("/fonts/AvenirNext-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* LAYOUT */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+  background-color: #f5f5f5;
+}
+
+h1.title {
+  background-color: #6a7b8b;
+  color: #fff;
+  font-family: "Avenir Next", sans-serif;
+  font-size: 33px;
+  font-weight: bold;
+  line-height: 1.4em;
+  margin: 0;
+  padding: 50px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: #5c5b5b;
+  font-family: "Avenir Next", sans-serif;
+  font-size: 33px;
+  font-weight: bold;
+  line-height: 1.4em;
+}
+
+p, table {
+  color: #5c5b5b;
+  font-family: "Avenir Next", sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.5em;
+  margin: 20px 0;
+}
+
+.main-content {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 80vw;
+}
+
+.center {
+  text-align: center;
+}
+
+/* TABLE FORMATTING */
+
+table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+table tr:first-child {
+  background-color: #6a7b8b;
+  color: #fff;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #dedede;
+}
+
+table td {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bababa;
+  padding: 10px;
+}
+
+table td:last-child {
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,15 @@
+extends layout 
+
+block content
+  h2 Welcome #{users.firstname}
+  table
+    tr
+      td First Name 
+      td Last Name
+      td Email 
+      td Password
+    tr
+      td= users.firstname
+      td= users.lastname
+      td= users.email 
+      td= users.password

@@ -4,7 +4,7 @@
 First draft finished, awaiting tutorial to confirm assumptions
 
 ## Project B
-Researching
+In Progress
 
 ## Project C
 Not started

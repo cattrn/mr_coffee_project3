@@ -1,0 +1,15 @@
+extends layout 
+
+block content
+  h2 Welcome
+  table
+    tr
+      td User ID 
+      td Day
+      td Start At 
+      td End At
+    tr
+      td= schedules.user_id
+      td= schedules.day
+      td= schedules.start_at 
+      td= schedules.end_at
