@@ -1,18 +1,19 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const crypto = require('crypto')
-
 const data = require('./data.js')
 
 const app = express()
 const port = 3000
+
+// I don't know how these work
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 // STEP 2 --------------------------------//
 
 app.get('/', (req, res) => {
   res.send('Welcome to our schedule website')
 })
-
 
 app.get('/users', (req, res) => {
   res.send(data.users)
@@ -41,21 +42,6 @@ app.get('/users/:id/schedules', (req, res) => {
 
 // STEP 4 --------------------------------//
 
-// don't know what this does
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-app.use(bodyParser.json())
-
-// // Parse URL-encoded bodies (as sent by HTML forms)
-// app.use(express.urlencoded());
-
-// // Parse JSON bodies (as sent by API clients)
-// app.use(express.json());
-
-
-
 app.post('/schedules', (req, res) => {
   let newSchedule = {
     'user_id': Number(req.body.user_id),
@@ -75,7 +61,7 @@ app.post('/users', (req, res) => {
 
   let newUser = {
     'firstname': req.body.firstname,
-    'lastname': req.body.firstname,
+    'lastname': req.body.lastname,
     'email': req.body.email,
     'password': hash
   }
