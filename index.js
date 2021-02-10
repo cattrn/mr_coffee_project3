@@ -7,7 +7,7 @@ const port = 3000
 
 // I don't know how these work
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
 
 app.use(express.static('public'))
 
@@ -15,7 +15,8 @@ app.use(express.static('public'))
 app.set('views', './views')
 app.set('view engine', 'pug')
 
-// ROUTES
+// VIEWS
+
 app.get('/', (req, res) => {
   res.render('index', {
     description: 'Welcome to our schedule website'
@@ -34,6 +35,7 @@ app.get('/schedules', (req, res) => {
   })
 })
 
+// regex to limit parameter to numbers
 app.get('/users/:id(\\d+)/', (req, res) => {
   res.render('user', {
     users: data.users[req.params.id]
@@ -59,28 +61,44 @@ app.get('/users/new', (req, res) => {
 })
 
 app.get('/schedules/new', (req, res) => {
-  res.render('new-schedule')
+  res.render('new-schedule', {
+    users: data.users
+  })
 })
 
-// STEP 4 --------------------------------//
+// SCHEDULE FORM
 
 app.post('/schedules', (req, res) => {
+  let user_id = Number
+  for (i = 0; i < data.users.length; i++) {
+    if (req.body.name == data.users[i]['firstname'] + ' ' + data.users[i]['lastname']) {
+      user_id = i
+    }
+  }
+
+  const weekTranslation = {
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+    Saturday: 6,
+    Sunday: 7
+  }
+
   let newSchedule = {
-    'user_id': Number(req.body.user_id),
-    'day': Number(req.body.day),
+    'user_id': user_id,
+    'day': weekTranslation[req.body.day],
     'start_at': req.body.start_at,
     'end_at': req.body.end_at
   }
 
   data.schedules.push(newSchedule)
+  res.redirect('/schedules')
 })
 
-function scheduleForm() {
-  window.onload.href="/schedules"
-}
 
-
-
+// USER FORM
 
 app.post('/users', (req, res) => {
   const secret = 'abcdefg'
@@ -92,11 +110,11 @@ app.post('/users', (req, res) => {
     'email': req.body.email,
     'password': hash
   }
-  
   data.users.push(newUser)
-  // something here
-  window.location.pathname="/users"
+  res.redirect('/users')
 })
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

@@ -2,17 +2,28 @@ extends layout
 
 block content 
   h2 Add New Schedule 
-  form(action="post")
+  form(action="/schedules" method="POST")
     div
       label(for="name") Name:
-      input(id="name" type="text" name="name")
+      input(id="name" list="people" name="name" autocomplete="off")
+      datalist#people
+        each user, i in users
+          option(value=user.firstname + " " + user.lastname)
     div
       label(for="day") Day:
-      input(id="day" type="text" name="day")
+      input(id="day" list="days" name="day")
+      datalist#days
+        option(value="Monday")
+        option(value="Tuesday")
+        option(value="Wednesday")
+        option(value="Thursday")
+        option(value="Friday")
+        option(value="Saturday")
+        option(value="Sunday")
     div
-      label(for="start-at") Start Time: 
-      input(id="start-at" type="text" name="start-at")
+      label(for="start_at") Start Time: 
+      input(id="start_at" type="text" name="start_at")
     div
-      label(for="end-at") End Time: 
-      input(id="end-at" type="text" name="end-at")
+      label(for="end_at") End Time: 
+      input(id="end_at" type="text" name="end_at")
     button(type="submit") Submit

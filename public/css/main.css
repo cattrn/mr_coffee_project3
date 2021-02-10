@@ -122,7 +122,7 @@ table td:last-child {
 form input:not(button[type="submit"]) {
   background-color: #bbc2c9;
   border: none;
-  color: #fff;
+  color: #000;
   display: block;
   font-family: "Avenir Next", sans-serif;
   font-size: 20px;
