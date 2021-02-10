@@ -1,0 +1,17 @@
+extends layout 
+
+block content 
+  h2 Add New User 
+  form(action="post")
+    div
+      label(for="fname") First Name: 
+      input(id="fname" type="text" name="fname")
+    div
+      label(for="lname") Last Name: 
+      input(id="lname" type="text" name="lname")
+    div
+      label(for="email") Email: 
+      input(id="email" type="text" name="email")
+    div
+      label(for="password") Password: 
+      input(id="password" type="text" name="password")

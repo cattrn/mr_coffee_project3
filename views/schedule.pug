@@ -1,15 +1,17 @@
 extends layout 
 
 block content
-  h2 Welcome
+  h2 Welcome #{users.firstname}
+  p Here are your schedules
   table
     tr
       td User ID 
       td Day
       td Start At 
       td End At
-    tr
-      td= schedules.user_id
-      td= schedules.day
-      td= schedules.start_at 
-      td= schedules.end_at
+    each schedule, i in schedules
+      tr
+        td= schedule.user_id
+        td= schedule.day
+        td= schedule.start_at 
+        td= schedule.end_at

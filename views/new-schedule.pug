@@ -1,0 +1,17 @@
+extends layout 
+
+block content 
+  h2 Add New Schedule 
+  form(action="post")
+    div
+      label(for="name") Name:
+      input(id="name" type="text" name="name")
+    div
+      label(for="day") Day:
+      input(id="day" type="text" name="day")
+    div
+      label(for="start-at") Start Time: 
+      input(id="start-at" type="text" name="start-at")
+    div
+      label(for="end-at") End Time: 
+      input(id="end-at" type="text" name="end-at")
