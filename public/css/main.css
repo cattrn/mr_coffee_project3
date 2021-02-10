@@ -119,8 +119,7 @@ table td:last-child {
 
 /* FORM FORMATTING */
 
-form input:not(button[type="submit"]),
-form textarea {
+form input:not(button[type="submit"]) {
   background-color: #bbc2c9;
   border: none;
   color: #fff;
@@ -133,6 +132,18 @@ form textarea {
   width: 100%;
 }
 
-form textarea::placeholder {
+button[type="submit"] {
+  background-color: #6a7b8b;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.4);
   color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px auto;
+  text-transform: uppercase;
+  padding: 15px 50px;
 }
+

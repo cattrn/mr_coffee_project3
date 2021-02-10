@@ -64,35 +64,39 @@ app.get('/schedules/new', (req, res) => {
 
 // STEP 4 --------------------------------//
 
-// app.post('/schedules', (req, res) => {
-//   let newSchedule = {
-//     'user_id': Number(req.body.user_id),
-//     'day': Number(req.body.day),
-//     'start_at': req.body.start_at,
-//     'end_at': req.body.end_at
-//   }
+app.post('/schedules', (req, res) => {
+  let newSchedule = {
+    'user_id': Number(req.body.user_id),
+    'day': Number(req.body.day),
+    'start_at': req.body.start_at,
+    'end_at': req.body.end_at
+  }
 
-//   data.schedules.push(newSchedule)
-//   res.send(newSchedule)
-// })
+  data.schedules.push(newSchedule)
+})
+
+function scheduleForm() {
+  window.onload.href="/schedules"
+}
 
 
 
 
-// app.post('/users', (req, res) => {
-//   const secret = 'abcdefg'
-//   const hash = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')
+app.post('/users', (req, res) => {
+  const secret = 'abcdefg'
+  const hash = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')
 
-//   let newUser = {
-//     'firstname': req.body.firstname,
-//     'lastname': req.body.lastname,
-//     'email': req.body.email,
-//     'password': hash
-//   }
+  let newUser = {
+    'firstname': req.body.firstname,
+    'lastname': req.body.lastname,
+    'email': req.body.email,
+    'password': hash
+  }
   
-//   data.users.push(newUser)
-//   res.send(newUser)
-// })
+  data.users.push(newUser)
+  // something here
+  window.location.pathname="/users"
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
