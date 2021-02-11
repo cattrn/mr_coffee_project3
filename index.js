@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const crypto = require('crypto')
 const data = require('./data.js')
 
@@ -7,7 +8,9 @@ const port = 3000
 
 // I don't know how these work
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
+
+app.use(morgan('dev'))
 
 // STEP 2 --------------------------------//
 
@@ -43,7 +46,7 @@ app.get('/users/:id/schedules', (req, res) => {
 // STEP 4 --------------------------------//
 
 app.post('/schedules', (req, res) => {
-  let newSchedule = {
+  const newSchedule = {
     'user_id': Number(req.body.user_id),
     'day': Number(req.body.day),
     'start_at': req.body.start_at,
@@ -59,7 +62,7 @@ app.post('/users', (req, res) => {
   const secret = 'abcdefg'
   const hash = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')
 
-  let newUser = {
+  const newUser = {
     'firstname': req.body.firstname,
     'lastname': req.body.lastname,
     'email': req.body.email,
