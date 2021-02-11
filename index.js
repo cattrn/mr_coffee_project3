@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const data = require('./public/data.js')
 const crypto = require('crypto')
 
@@ -8,6 +9,8 @@ const port = 3000
 // I don't know how these work
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+app.use(morgan('dev'))
 
 app.use(express.static('public'))
 
@@ -86,7 +89,7 @@ app.post('/schedules', (req, res) => {
     Sunday: 7
   }
 
-  let newSchedule = {
+  const newSchedule = {
     'user_id': user_id,
     'day': weekTranslation[req.body.day],
     'start_at': req.body.start_at,
@@ -100,11 +103,12 @@ app.post('/schedules', (req, res) => {
 
 // USER FORM
 
+// TODO: check if email exists already
 app.post('/users', (req, res) => {
   const secret = 'abcdefg'
   const hash = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')
 
-  let newUser = {
+  const newUser = {
     'firstname': req.body.firstname,
     'lastname': req.body.lastname,
     'email': req.body.email,
