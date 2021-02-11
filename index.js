@@ -15,32 +15,32 @@ app.use(morgan('dev'))
 app.use(express.static('public'))
 
 // pug template engine
-app.set('views', './views')
+// app.set('views', './views') //this is actually not needed
 app.set('view engine', 'pug')
 
 // VIEWS
 
 app.get('/', (req, res) => {
-  res.render('index', {
+  res.render('pages/index', {
     description: 'Welcome to our schedule website'
   })
 })
 
 app.get('/users', (req, res) => {
-  res.render('users', {
+  res.render('pages/users', {
     users: data.users
   })
 })
 
 app.get('/schedules', (req, res) => {
-  res.render('schedules', {
+  res.render('pages/schedules', {
     schedules: data.schedules
   })
 })
 
 // regex to limit parameter to numbers
 app.get('/users/:id(\\d+)/', (req, res) => {
-  res.render('user', {
+  res.render('pages/user', {
     users: data.users[req.params.id]
   })
 })
@@ -52,7 +52,7 @@ app.get('/users/:id/schedules', (req, res) => {
       personalSchedule.push(data.schedules[i])
     }
   }
-  res.render('schedule', {
+  res.render('pages/schedule', {
     users: data.users[req.params.id],
     schedules: personalSchedule
   })
@@ -60,11 +60,11 @@ app.get('/users/:id/schedules', (req, res) => {
 })
 
 app.get('/users/new', (req, res) => {
-  res.render('new-user')
+  res.render('pages/new-user')
 })
 
 app.get('/schedules/new', (req, res) => {
-  res.render('new-schedule', {
+  res.render('pages/new-schedule', {
     users: data.users
   })
 })
