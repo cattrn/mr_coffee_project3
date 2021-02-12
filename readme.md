@@ -1,3 +1,4 @@
 # Current Working Status
 
-In Progress
+Functionally finished, working on touches
+- validate form in js and produce errors client-side
