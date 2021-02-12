@@ -3,20 +3,15 @@ html(lang="en")
   head
     title Mr. Coffee Scheduling Website
     link(rel='stylesheet', href='/css/main.css')
-    script src='data.js'
   body
     div.header
       h1.title Mr. Coffee Scheduling Website
       nav 
         ul
           li
-            a(href="/users") All Users
+            a(href="/") All Schedules
           li
-            a(href="/schedules") All Schedules 
-          li
-            a(href="/users/new") Add User 
-          li
-            a(href="/schedules/new") Add Schedule
+            a(href="/new") Add Schedule
 
     div.main-content
       block content

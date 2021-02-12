@@ -1,0 +1,16 @@
+extends ../layout 
+
+block content
+  h2 All Schedules 
+  table
+    tr
+      td Username 
+      td Day
+      td Start At 
+      td End At
+    each schedule, i in schedules
+      tr
+        td= schedule.username
+        td= schedule.day
+        td= schedule.start_time
+        td= schedule.end_time
