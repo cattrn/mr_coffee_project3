@@ -5,25 +5,24 @@ block content
   form(action="/schedules" method="POST")
     div
       label(for="name") Name:
-      input(id="name" list="people" name="name" autocomplete="off")
-      datalist#people
+      //- input(id="name" list="people" name="name" autocomplete="off" required)
+      select(id="name" name="name" required)
         each user, i in users
-          option(value=user.firstname + " " + user.lastname)
+          option(value=user.firstname + user.lastname) #{user.firstname} #{user.lastname}
     div
       label(for="day") Day:
-      input(id="day" list="days" name="day")
-      datalist#days
-        option(value="Monday")
-        option(value="Tuesday")
-        option(value="Wednesday")
-        option(value="Thursday")
-        option(value="Friday")
-        option(value="Saturday")
-        option(value="Sunday")
+      select(id="day" name="day" required)
+        option(value="Monday") Monday
+        option(value="Tuesday") Tuesday
+        option(value="Wednesday") Wednesday
+        option(value="Thursday") Thursday
+        option(value="Friday") Friday
+        option(value="Saturday") Saturday
+        option(value="Sunday") Sunday
     div
       label(for="start_at") Start Time: 
-      input(id="start_at" type="text" name="start_at")
+      input(id="start_at" type="text" name="start_at" required)
     div
       label(for="end_at") End Time: 
-      input(id="end_at" type="text" name="end_at")
+      input(id="end_at" type="text" name="end_at" required)
     button(type="submit") Submit
