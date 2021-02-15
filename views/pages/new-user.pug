@@ -1,41 +1,24 @@
-doctype html
-html(lang="en")
-  head
-    title Mr. Coffee Scheduling Website
-    link(rel='stylesheet', href='/css/main.css')
-    script(src='/js/form-validation.js')
-  body
-    div.header
-      h1.title Mr. Coffee Scheduling Website
-      nav 
-        ul
-          li
-            a(href="/users") All Users
-          li
-            a(href="/schedules") All Schedules 
-          li
-            a(href="/users/new") Add User 
-          li
-            a(href="/schedules/new") Add Schedule
+extends ../layout 
 
-    div.main-content
-      h2 Add New User 
-      form(class="new-user" action="/users" method="POST")
-        div
-          label(for="firstname") First Name: 
-          input(id="firstname" type="text" name="firstname" required)
-          p.alert.firstname Not valid
-        div
-          label(for="lastname") Last Name: 
-          input(id="lastname" type="text" name="lastname" required)
-          p.alert.lastname Not valid
-        div
-          label(for="email") Email: 
-          input(id="email" type="email" name="email" required)
-          p.alert.email Not valid
-        div
-          label(for="password") Password:
-          p.form-description Must contain at least at least 6 characters, 1 uppercase letter, 1 lowercase letter, and 1 number.
-          input(id="password" type="password" name="password" required)
-          p.alert.password Not valid
-        button(type="submit") Submit
+block content 
+  h2 Add New User 
+  form(class="new-user" action="/users" method="POST")
+    div
+      label(for="firstname") First Name: 
+      input(id="firstname" type="text" name="firstname" required)
+      p.alert.firstname Not valid
+    div
+      label(for="lastname") Last Name: 
+      input(id="lastname" type="text" name="lastname" required)
+      p.alert.lastname Not valid
+    div
+      label(for="email") Email: 
+      input(id="email" type="email" name="email" required)
+      p.alert.email Not valid
+    div
+      label(for="password") Password:
+      p.form-description Must contain at least at least 6 characters, 1 uppercase letter, 1 lowercase letter, and 1 number.
+      input(id="password" type="password" name="password" required)
+      p.alert.password Not valid
+    button(type="submit") Submit
+  script(src="/js/form-validation.js")

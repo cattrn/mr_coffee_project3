@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // import {users} from '../data.js'
+  // console.log(users)
+
   // DOM elements - Contact form
   const contactForm = document.querySelector('.new-user')
   const formSubmit = document.querySelector('.new-user button[type="submit"]')
@@ -41,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // email validation - regex courtesy of Tripleaxis
     const email = document.querySelector('.new-user #email')
     const emailAlert = document.querySelector('.alert.email')
+    let tempArray = []
     if (email.value === '') {
       event.preventDefault()
       emailAlert.innerHTML = 'Email required.'
@@ -49,9 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault()
       emailAlert.innerHTML = 'Please use a valid email address.'
       emailAlert.style.visibility = 'visible'
-    } 
-// TODO: check if email exists
-    else {
+    } else {
       emailAlert.style.visibility = 'hidden'
     }
 
