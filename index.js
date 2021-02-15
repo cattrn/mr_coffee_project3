@@ -1,5 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
+const requirejs = require('requirejs')
 const data = require('./public/data.js')
 const crypto = require('crypto')
 
@@ -103,9 +104,8 @@ app.post('/schedules', (req, res) => {
 // USER FORM
 
 // TODO: check if email exists already
-// TODO: validate form
 app.post('/users', (req, res) => {
-  const secret = 'abcdefg'
+  const secret = 'mrCoffee'
   const hash = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')
 
   const newUser = {
