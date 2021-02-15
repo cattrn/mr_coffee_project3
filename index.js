@@ -6,7 +6,6 @@ const data = require('./data.js')
 const app = express()
 const port = 3000
 
-// I don't know how these work
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
@@ -19,11 +18,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-  res.send(data.users)
+  res.json(data.users)
 })
 
 app.get('/schedules', (req, res) => {
-  res.send(data.schedules)
+  res.json(data.schedules)
 })
 
 // STEP 3 --------------------------------//
