@@ -15,7 +15,6 @@ app.use(morgan('dev'))
 app.use(express.static('public'))
 
 // pug template engine
-// app.set('views', './views') //this is actually not needed
 app.set('view engine', 'pug')
 
 // VIEWS
@@ -104,6 +103,7 @@ app.post('/schedules', (req, res) => {
 // USER FORM
 
 // TODO: check if email exists already
+// TODO: validate form
 app.post('/users', (req, res) => {
   const secret = 'abcdefg'
   const hash = crypto.createHmac('sha256', secret).update(req.body.password).digest('hex')
@@ -114,6 +114,7 @@ app.post('/users', (req, res) => {
     'email': req.body.email,
     'password': hash
   }
+
   data.users.push(newUser)
   res.redirect('/users')
 })
