@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // import {users} from '../data.js'
-  // console.log(users)
 
   // DOM elements - Contact form
   const contactForm = document.querySelector('.new-user')
@@ -44,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // email validation - regex courtesy of Tripleaxis
     const email = document.querySelector('.new-user #email')
     const emailAlert = document.querySelector('.alert.email')
-    let tempArray = []
     if (email.value === '') {
       event.preventDefault()
       emailAlert.innerHTML = 'Email required.'

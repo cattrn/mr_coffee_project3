@@ -2,16 +2,19 @@ extends ../layout
 
 block content 
   h2 Add New Schedule 
-  form(action="/schedules" method="POST")
+  form(class="new-schedule" action="/schedules" method="POST")
     div
       label(for="name") Name:
       //- input(id="name" list="people" name="name" autocomplete="off" required)
       select(id="name" name="name" required)
+        option(disabled selected value) Select a name
         each user, i in users
           option(value=user.firstname + user.lastname) #{user.firstname} #{user.lastname}
+      p.alert.name Not valid
     div
       label(for="day") Day:
       select(id="day" name="day" required)
+        option(disabled selected value) Select a day
         option(value="Monday") Monday
         option(value="Tuesday") Tuesday
         option(value="Wednesday") Wednesday
@@ -19,10 +22,16 @@ block content
         option(value="Friday") Friday
         option(value="Saturday") Saturday
         option(value="Sunday") Sunday
+      p.alert.day Not valid
     div
       label(for="start_at") Start Time: 
+      p.form-description Example format: 2PM, 9AM, 10:30PM
       input(id="start_at" type="text" name="start_at" required)
+      p.alert.start_at Not valid
     div
       label(for="end_at") End Time: 
+      p.form-description Example format: 2PM, 9AM, 10:30PM
       input(id="end_at" type="text" name="end_at" required)
+      p.alert.end_at Not valid
     button(type="submit") Submit
+  script(src="/js/schedule-form-validation.js")
