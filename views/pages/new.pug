@@ -2,25 +2,30 @@ extends ../layout
 
 block content 
   h2 Add New Schedule 
-  form(action="/new" method="POST")
+  form(class="new-schedule" action="/new" method="POST")
     div
       label(for="username") Username:
       input(id="username" name="username")
+      p.alert.username Not valid
     div
       label(for="day") Day:
-      input(id="day" list="days" name="day")
-      datalist#days
-        option(value="Monday")
-        option(value="Tuesday")
-        option(value="Wednesday")
-        option(value="Thursday")
-        option(value="Friday")
-        option(value="Saturday")
-        option(value="Sunday")
+      select(id="day" name="day")
+        option(disabled selected value) Select a day
+        option(value="Monday") Monday
+        option(value="Tuesday") Tuesday
+        option(value="Wednesday") Wednesday
+        option(value="Thursday") Thursday
+        option(value="Friday") Friday
+        option(value="Saturday") Saturday
+        option(value="Sunday") Sunday 
+      p.alert.day Not valid
     div
       label(for="start_time") Start Time:
       input(id="start_time" type="text" name="start_time" placeholder="HH:MM")
+      p.alert.start_time Not valid
     div
       label(for="end_time") End Time:
       input(id="end_time" type="text" name="end_time" placeholder="HH:MM")
+      p.alert.end_time Not valid
     button(type="submit") Submit
+  script(src="/js/schedule-form-validation.js")
