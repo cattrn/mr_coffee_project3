@@ -51,9 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // end time validation
-    // TODO: check if earlier than start time
     const endAt = document.querySelector('.new-schedule #end_time')
     const endAtAlert = document.querySelector('.alert.end_time')
+    const endAtInt = endAt.value.slice(0, 2) + endAt.value.slice(-2)
+    const startAtInt = startAt.value.slice(0, 2) + startAt.value.slice(-2)
+
     if (endAt.value === '') {
       event.preventDefault()
       endAtAlert.innerHTML = 'Please include an end time.'
@@ -61,6 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (/^((0[0-9])|(1[0-9])|(2[0-3]))(:[0-5][0-9])$/.test(endAt.value) !== true) {
       event.preventDefault()
       endAtAlert.innerHTML = 'Please check the format of your time.'
+      endAtAlert.style.visibility = 'visible'
+    } else if (Number(endAtInt) <= Number(startAtInt)) {
+      event.preventDefault()
+      endAtAlert.innerHTML = 'Please choose an end time later than your start time.'
       endAtAlert.style.visibility = 'visible'
     } else {
       endAtAlert.style.visibility = 'hidden'
