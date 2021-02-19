@@ -63,7 +63,7 @@ app.post('/new', (req, res) => {
   db.query('INSERT INTO schedules(username, day, start_time, end_time) VALUES ($1, $2, $3, $4)', [username, day, start_time, end_time])
   .then((newSchedule) => {
     console.log(newSchedule)
-    res.redirect('/')
+    res.redirect('/new')
   })
   .catch((err) => {
     res.render('pages/error', {
