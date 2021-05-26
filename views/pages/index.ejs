@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= documentTitle  %></title>
+  <link ...>
+</head>
+<body>
+  <%- include('../includes/header') %>
+  
+  <h2>Hello <%= name %></h1>
+  <p>How is you <%= day %> going?</p>
+
+  <h3>Here are is the first user</h2>
+  <% for (let i = 0; i < users.length; i++) { %>
+    <p><strong>First name:</strong> <%=users[i].firstname%></p>
+    <p><strong>Last name:</strong> <%=users[i].lastname%></p>
+    <p><strong>Email:</strong> <%=users[i].email%></p>
+  <% } %>
+  
+  
+</body>
+</html>
