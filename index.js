@@ -1,13 +1,24 @@
+// express setup
 const express = require('express')
 const app = express()
-const bcrypt = require('bcrypt');
+
+// look for static files in 'public' folder
+app.use(express.static('public'))
+
+// postgres setup
+const db = require('./database')
+
+// bcrypt setup
+const bcrypt = require('bcrypt')
 const saltRounds = 10
 
+// set port to 3000 unless there's an environmental variable for PORT
 const PORT = process.env.PORT || 3000
 
 // access to our data.js file
 const data = require('./data')
 
+// body parsing
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
@@ -16,15 +27,19 @@ app.set('view engine', 'ejs')
 
 // Step 2
 app.get('/', (req, res) => {
-  // console.log(data)
-  // res.send("Welcome to our schedule website")
-
-  res.render('pages/index', {
-    documentTitle: 'Homepage',
-    name: 'Caterina Turnbull',
-    day: 'Wednesday',
-    users: data.users
-    // usersLength: data.users.length
+  db.any('SELECT * FROM schedules;')
+  .then((schedules) => {
+    console.log(schedules)
+    res.render('pages/index', {
+      documentTitle: 'Homepage',
+      name: 'Cat',
+      day: 'Friday',
+      schedules: schedules
+      // usersLength: data.users.length
+    })
+  })
+  .catch((err) => {
+    res.send(err)
   })
 })
 
