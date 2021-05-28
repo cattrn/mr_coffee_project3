@@ -35,7 +35,9 @@ app.get('/users', (req, res) => {
 
 // Step 3
 app.get('/users/:id', (req, res) => {
-  res.send(data.users)
+  const object = Number(req.params.id)
+  console.log(object)
+  res.send(data.users[object])
 })
 
 app.get('/users/:id/schedules', (req, res) => { // TODO: change id param to only digits
@@ -64,13 +66,16 @@ app.post('/users', (req, res) => {
   const plainTextPassword = req.body.password
   console.log(plainTextPassword)
 
-  bcrypt.hash(plainTextPassword, saltRounds, (err, hash) => {
-    // Store hash in your password DB.
-    console.log(err)
-    console.log(hash)
-  })
+  // bcrypt.hash(plainTextPassword, saltRounds, (err, hash) => {
+  //   // Store hash in your password DB.
+  //   console.log(hash)
+  //   return hash
+  // })
+  
 
-  res.send('Just testing')
+  const hash = bcrypt.hashSync(plainTextPassword, saltRounds);
+  console.log(hash)
+  res.send(hash)
 })
 
 app.listen(PORT, () => {
